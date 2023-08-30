@@ -5,10 +5,17 @@ function verificarSenha(){
   var video = document.querySelector('.video');
 
 
-  if (senha === "123"){
+  if (senha === "123")
+  {
     container.style.display="none";
     video.style.display="flex";
-  } else {
+  }
+   else if (senha.trim() === "") 
+   {
+    alert('Digite uma senha');
+  } 
+  else 
+  {
     alert('Senha "' + senha + '" está errada, tente novamente')
   }
 }
