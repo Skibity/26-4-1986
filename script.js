@@ -9,6 +9,6 @@ function verificarSenha(){
     container.style.display="none";
     video.style.display="flex";
   } else {
-    alert("Senha " + senha + " está errada, tente novamente")
+    alert('Senha "' + senha + '" está errada, tente novamente')
   }
 }
