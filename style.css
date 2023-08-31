@@ -51,6 +51,7 @@ input{
   background-color: white;
   color: black;
   transition: 0.6s;
+  cursor: pointer;
 }
 /* .container{
   display: none;
