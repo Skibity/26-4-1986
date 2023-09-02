@@ -5,7 +5,7 @@ function verificarSenha(){
   var video = document.querySelector('.video');
 
 
-  if (senha === "123")
+  if (senha === "AMOM")
   {
     container.style.display="none";
     video.style.display="flex";
