@@ -1,21 +1,65 @@
-function verificarSenha(){
+const input = document.querySelector(".input");
 
-  var senha = document.getElementById('senha').value;
-  var container = document.querySelector('.container');
-  var video = document.querySelector('.video');
+input.focus();
+window.addEventListener("click", () => input.focus())
 
+function getInputValue() {
+  return document.querySelector(".input").innerHTML;
+}
 
-  if (senha.trim() === "Mykhailo")
-  {
-    window.location.href = "/hahfuiakfhwjfhdscbasccjvkayfdajkgFUHWIW8EFJWIOFHYIWGUIVBWGWISDUKBCKBHBHJbhjbuldgagiua.html"; // Redirect to the information subpage
-    return;
-  }
-   else if (senha.trim() === "") 
-   {
-    alert('Digite uma senha');
-  } 
-  else 
-  {
-    alert('Senha "' + senha + '" está errada, tente novamente')
+function write(el, text, cb) {
+  let index = 0;
+  el.innerHTML = "";
+
+  return function append() {
+    if (index >= text.length) {
+      cb();
+      return
+    }
+    setTimeout(() => {
+      el.innerHTML = el.innerHTML.concat(text[index])
+      index++;
+      append()
+    }, Math.floor(Math.random() * (300 - 100 + 1) + 100))
   }
 }
+
+document.addEventListener('keydown', ({ code }) => {
+  if (code === "Enter") {
+    const inputValue = getInputValue().trim().toLowerCase();
+
+    if (inputValue === "--help" || inputValue === "-h") {
+      document.querySelector(".input").innerHTML = "";
+      document.querySelector(".input").innerHTML = `
+        <table>
+          <tr>
+            <th>Command</th>
+            <th>Options</th>
+            <th>Details</th>
+          </tr>
+          <tr>
+            <td>--h</td>
+            <td>-</td>
+            <td>Display all commands</td>
+          </tr>
+        </table>
+      `;
+      return;
+    } else if (inputValue === "1986") {
+      window.location.href = "/login.html"; // Redirect to the login subpage
+      return;
+    }
+
+    document.querySelector(".input").innerHTML = "";
+    document.querySelector(".input").setAttribute("contenteditable", false);
+
+    const processInput = write(document.querySelector(".prefix"), "Processing, please wait...", () => {
+      const typeResponse = write(document.querySelector(".prefix"), "Insert Password >", () => {
+        document.querySelector(".input").setAttribute("contenteditable", true);
+      });
+      typeResponse();
+    });
+
+    processInput();
+  }
+});
