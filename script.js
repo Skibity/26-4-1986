@@ -1,21 +1,114 @@
-function verificarSenha(){
+const input = document.querySelector(".input");
 
-  var senha = document.getElementById('senha').value;
-  var container = document.querySelector('.container');
-  var video = document.querySelector('.video');
+input.focus();
 
+window.addEventListener("click", () => input.focus());
 
-  if (senha === "AMOM")
-  {
-    container.style.display="none";
-    video.style.display="flex";
-  }
-   else if (senha.trim() === "") 
-   {
-    alert('Digite uma senha');
-  } 
-  else 
-  {
-    alert('Senha "' + senha + '" está errada, tente novamente')
-  }
+function getInputValue() {
+
+  return document.querySelector(".input").innerHTML;
+
 }
+
+function write(el, text, cb) {
+
+  let index = 0;
+
+  el.innerHTML = "";
+
+  function append() {
+
+    if (index >= text.length) {
+
+      cb();
+
+      return;
+
+    }
+
+    setTimeout(() => {
+
+      el.innerHTML = el.innerHTML.concat(text[index]);
+
+      index++;
+
+      append();
+
+    }, Math.floor(Math.random() * (300 - 100 + 1) + 100));
+
+  }
+
+  append();
+
+}
+
+document.addEventListener('keydown', ({ code }) => {
+
+  if (code === "Enter") {
+
+    const inputValue = getInputValue().trim().toLowerCase();
+
+    if (inputValue === "--help" || inputValue === "-h") {
+
+      document.querySelector(".input").innerHTML = "";
+
+      document.querySelector(".input").innerHTML = `
+
+        <table>
+
+          <tr>
+
+            <th>2222222</th>
+
+            <th>2222222</th>
+
+            <th>2222222</th>
+
+          </tr>
+
+          <tr>
+
+            <td>--h</td>
+
+            <td>-</td>
+
+            <td>Display all commands</td>
+
+          </tr>
+
+        </table>
+
+      `;
+
+      return;
+
+    } else if (inputValue === "login") {
+
+      window.location.href = "/login.html"; // Redirect to the login subpage
+
+      return;
+
+    }
+
+    document.querySelector(".input").innerHTML = "";
+
+    document.querySelector(".input").setAttribute("contenteditable", false);
+
+    const processInput = write(document.querySelector(".prefix"), "Processing, please wait...", () => {
+
+      const typeResponse = write(document.querySelector(".prefix"), "C:/User/admin >", () => {
+
+        document.querySelector(".input").setAttribute("contenteditable", true);
+
+      });
+
+      typeResponse();
+
+    });
+
+    processInput();
+
+  }
+
+});
+
