@@ -67,6 +67,7 @@ body {
 }
 
 .content {
+  align-text: center
   position: relative;
   margin: 100px;
   z-index: 100;
