@@ -1,4 +1,5 @@
 const input = document.querySelector(".input");
+let isProcessRunning = false; // Flag to track if a process is running
 
 input.focus();
 window.addEventListener("click", () => input.focus())
@@ -25,7 +26,7 @@ function write(el, text, cb) {
 }
 
 document.addEventListener('keydown', async ({ code }) => {
-  if (code === "Enter") {
+  if (code === "Enter" && !isProcessRunning) { // Check if a process is not already running
     const inputValue = getInputValue().trim().toLowerCase();
 
     if (inputValue === "--help" || inputValue === "-h") {
@@ -46,6 +47,9 @@ document.addEventListener('keydown', async ({ code }) => {
       `;
       return;
     } else if (inputValue === "login") {
+      // Set the flag to indicate that a process is running
+      isProcessRunning = true;
+
       // Show "Processing, please wait..." while loading
       document.querySelector(".input").innerHTML = "";
       const processInput = write(document.querySelector(".prefix"), "Processing, please wait...", async () => {
@@ -53,19 +57,28 @@ document.addEventListener('keydown', async ({ code }) => {
         const response = await fetch("/login.html");
         const loginPageContent = await response.text();
         
-        // Replace the current page content with the login page content
+        // Replace the current page content with the loaded login page content
         document.querySelector(".prefix").innerHTML = "";
         document.querySelector(".input").innerHTML = loginPageContent;
+
+        // Reset the flag when the process is complete
+        isProcessRunning = false;
       });
       
       processInput();
     } else {
+      // Set the flag to indicate that a process is running
+      isProcessRunning = true;
+
       document.querySelector(".input").innerHTML = "";
       document.querySelector(".input").setAttribute("contenteditable", false);
 
       const processInput = write(document.querySelector(".prefix"), "Processing, please wait...", () => {
         const typeResponse = write(document.querySelector(".prefix"), "C:/User/admin >", () => {
           document.querySelector(".input").setAttribute("contenteditable", true);
+
+          // Reset the flag when the process is complete
+          isProcessRunning = false;
         });
         typeResponse();
       });
