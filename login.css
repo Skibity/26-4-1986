@@ -61,7 +61,7 @@ input{
   flex-direction: column;
   display: none;
 }
-
+<!--
 .overlay {
   z-index: 200;
   position: absolute;
@@ -74,6 +74,7 @@ input{
   animation: scanlines 16ms infinite steps(4, start);
   opacity: 0.25;
 }
+-->
 
 @keyframes scanlines {
   from { background-position: 0 0px; }
