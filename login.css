@@ -1,67 +1,15 @@
 body {
-  background-color: black;
-  color: white;
-  margin: 0;
+  width: 100vw;
   height: 100vh;
   display: flex;
+  flex: 1;
   justify-content: center;
   align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
+  background: #000;
+  font: 1rem Inconsolata, monospace;
+  text-shadow: 0 0 5px #C8C8C8;
 }
 
-.container {
-  /* background-color: aqua; */
-  text-align: center;
-}
-
-p{
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.flex{
-  text-align: center;
-  flex-direction: column;
-}
-
-input{
-  background-color: black;
-  color: white;
-  padding: 5px;
-  width: 16rem;
-  text-align: center;
-  margin-top: 15px;
-  font-size: 20px;
-  border: 1px solid white;
-  border-radius: 3px;
-}
-
-#btn{
-  margin-top: 30px;
-  background-color: black;
-  color: white;
-  border: white solid 1px;
-  font-size: 12px;
-  padding: 7px;
-  font-weight: bold;
-  width: 4.5rem;
-  border-radius: 3px;
-}
-#btn:hover{
-  background-color: white;
-  color: black;
-  transition: 0.6s;
-  cursor: pointer;
-}
-/* .container{
-  display: none;
-} */
-.video{
-  text-align: center;
-  flex-direction: column;
-  display: none;
-}
-/*
 .overlay {
   z-index: 200;
   position: absolute;
@@ -74,7 +22,6 @@ input{
   animation: scanlines 16ms infinite steps(4, start);
   opacity: 0.25;
 }
-
 
 @keyframes scanlines {
   from { background-position: 0 0px; }
@@ -118,4 +65,47 @@ input{
   opacity: 0.25;
   z-index: 200;
 }
-*/
+
+.content {
+  position: relative;
+  margin: 100px;
+  z-index: 100;
+}
+
+.corp {
+  color: #FFBF00;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.line {
+  color: #FFBF00;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+@keyframes blinking {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cursor {
+  animation: blinking 800ms infinite;
+  margin-left: -5px;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  font: 1.3rem Inconsolata, monospace;
+  text-shadow: 0 0 5px #C8C8C8;
+  color: #FFBF00;
+  caret-color: transparent;
+}
+
+.input:focus {
+  outline: none;
+  border: none;
+}
