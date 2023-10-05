@@ -5,10 +5,10 @@ function verificarSenha(){
   var video = document.querySelector('.video');
 
 
-  if (senha === "AMOM")
+  if (senha.trim() === "Mykhailo")
   {
-    container.style.display="none";
-    video.style.display="flex";
+    window.location.href = "/hahfuiakfhwjfhdscbasccjvkayfdajkgFUHWIW8EFJWIOFHYIWGUIVBWGWISDUKBCKBHBHJbhjbuldgagiua.html"; // Redirect to the information subpage
+    return;
   }
    else if (senha.trim() === "") 
    {
