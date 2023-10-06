@@ -45,8 +45,8 @@ document.addEventListener('keydown', ({ code }) => {
         </table>
       `;
       return;
-    } else if (inputValue === "1986") {
-      window.location.href = "/login.html"; // Redirect to the login subpage
+    } else if (inputValue === "sarcopio") {
+      window.location.href = "jsbdjdbdbd.html"; // Redirect to the login subpage
       return;
     }
 
